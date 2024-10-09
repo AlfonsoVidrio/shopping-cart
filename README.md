@@ -2,6 +2,9 @@
 
 GuitarLA es una aplicación web simple desarrollada en React. Permite a los usuarios navegar por una selección de guitarras eléctricas, agregar productos a un carrito de compras y gestionar los artículos de manera sencilla.
 
+## Captura de pantalla
+<img src="./preview.png" alt="Screenshot" style="width: 600px; height: auto;">
+
 ## Características
 
 - **Agregar guitarras al carrito**: Navega por nuestra colección de guitarras eléctricas y agrégalas al carrito.
@@ -19,9 +22,9 @@ GuitarLA es una aplicación web simple desarrollada en React. Permite a los usua
 ## Instalación
 
 1. Clona el repositorio:
-   ```bash
-   git clone https://github.com/AlfonsoVidrio/shopping-cart.git
-    ```
+```bash
+git clone https://github.com/AlfonsoVidrio/shopping-cart.git
+```
 
 2. Navega al directorio del proyecto:
 ```bash
