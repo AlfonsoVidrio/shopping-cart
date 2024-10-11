@@ -1,11 +1,12 @@
-import { Header } from "./components/Header.jsx"
-import { Guitar } from "./components/Guitar.jsx"
-import { Footer } from "./components/Footer.jsx"
+import { Header } from "./components/Header.js"
+import { Guitar } from "./components/Guitar.js"
+import { Footer } from "./components/Footer.js"
 import { useCart } from "./hooks/useCart.js"
 
 export const  App = () => {
 
   const { data, cart, removeFromCart, increaseQuantity, decreaseQuantity, clearCart, addToCart, isEmpty, cartTotal } = useCart()
+
 
   return (
     <>

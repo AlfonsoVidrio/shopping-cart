@@ -1,9 +1,10 @@
 import { useState, useEffect, useMemo } from "react"
 import { db } from "../data/db.js"
+import type { CartItemType, GuitarType } from "../types"
 
 export const useCart = () => {
 
-    const initialCart = () => {
+    const initialCart = (): CartItemType[] => {
         const localStorageCart = localStorage.getItem('cart')
         return localStorageCart ? JSON.parse(localStorageCart) : []
     }
@@ -19,26 +20,28 @@ export const useCart = () => {
         localStorage.setItem('cart', JSON.stringify(cart))
     }, [cart])
 
-    const addToCart = (item) => {
-        const itemExists = cart.findIndex(guitar => guitar.id === item.id)
+    const addToCart = (item: GuitarType) => {
+        const itemExists = cart.findIndex(guitar => guitar.id === item.id);
         // Si el item ya existe en el carrito, incrementar la cantidad
         if (itemExists >= 0) {
-            const updatedCart = [...cart]
-            if (item.quantity < MAX_ITEMS) updatedCart[itemExists].quantity++
-            setCart(updatedCart)
+            const updatedCart = [...cart];
+            if (updatedCart[itemExists].quantity < MAX_ITEMS) {
+                updatedCart[itemExists].quantity++;
+            }
+            setCart(updatedCart);
         }
         // Si el item no existe en el carrito, agregarlo con cantidad 1
         else {
-            item.quantity = 1
-            setCart([...cart, item])
+            const newItem: CartItemType = { ...item, quantity: 1 };
+            setCart([...cart, newItem]);
         }
-    }
+    };
 
-    const removeFromCart = (id) => {
+    const removeFromCart = (id:GuitarType['id']) => {
         setCart(prevCart => prevCart.filter(guitar => guitar.id !== id))
     }
 
-    const decreaseQuantity = (id) => {
+    const decreaseQuantity = (id:GuitarType['id']) => {
         const updatedCart = cart.map(item => {
             if (item.id === id && item.quantity > MIN_ITEMS) {
                 return {
@@ -51,7 +54,7 @@ export const useCart = () => {
         setCart(updatedCart)
     }
 
-    const increaseQuantity = (id) => {
+    const increaseQuantity = (id:GuitarType['id']) => {
         const updatedCart = cart.map(item => {
             if (item.id === id && item.quantity < MAX_ITEMS) {
                 return {
